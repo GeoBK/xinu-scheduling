@@ -30,7 +30,7 @@ void sync_printf(char *fmt, ...)
 	restore(mask);
 }
 void test1(){
-	printf("test1");
+	printf("test1 \n");
 }
 process	main(void)
 {
