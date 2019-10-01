@@ -34,9 +34,9 @@ syscall print_ready_list(){
 	printf("%u\n",queuehead(readylist));
 	printf("%u\n",firstid(readylist));
 	printf("%u\n",lastid(readylist));
-	// int32 curr;
-	// for (curr = firstid(readylist);queuetab[curr].qkey != queuetail(readylist);curr = queuetab[curr].qnext) {
-	// 	printf("PID: %u \n",(unsigned int)curr);		
-	// }
+	int32 curr;
+	for (curr = firstid(readylist);curr != queuetail(readylist);curr = queuetab[curr].qnext) {
+		printf("PID: %u \n",(unsigned int)curr);		
+	}
 	return OK;
 }
