@@ -31,7 +31,9 @@ status	ready(
 syscall print_ready_list(){	
 	int32 curr;
 	printf("%u\n",queuetail(readylist));
-	printf("%u\n",queuetail(readylist));
+	printf("%u\n",queuehead(readylist));
+	printf("%u\n",firstid(readylist));
+	printf("%u\n",lastid(readylist));
 	// for (curr = firstid(readylist);queuetab[curr].qkey != queuetail(readylist);curr = queuetab[curr].qnext) {
 	// 	printf("PID: %u \n",(unsigned int)curr);		
 	// }
