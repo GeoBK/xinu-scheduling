@@ -31,7 +31,7 @@ status	ready(
 syscall print_ready_list(){
 	int32 curr = firstid(readylist);
 	while (queuetab[curr].qkey != queuetail(readylist)) {
-		printf("PID: %d",queuetab[curr].qkey);
+		printf("PID: %u /n",(unsigned int)curr);
 		curr = queuetab[curr].qnext;
 	}
 }
