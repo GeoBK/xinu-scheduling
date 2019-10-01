@@ -28,10 +28,10 @@ status	ready(
 	return OK;
 }
 
-syscall print_ready_list(){
-	int32 curr = firstid(readylist);
-	while (queuetab[curr].qkey != queuetail(readylist)) {
-		printf("PID: %u /n",(unsigned int)curr);
-		curr = queuetab[curr].qnext;
+syscall print_ready_list(){	
+	int32 curr;
+	for (curr = firstid(readylist);queuetab[curr].qkey != queuetail(readylist);curr = queuetab[curr].qnext) {
+		printf("PID: %u \n",(unsigned int)curr);		
 	}
+	return OK;
 }
