@@ -24,8 +24,10 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 
 	ptold = &proctab[currpid];
 
+	
+	
 	if (ptold->prstate == PR_CURR) {  /* Process remains eligible */
-		if (ptold->prprio > firstkey(readylist)) {
+		if (ptold->prprio > firstkey(readylist)) {			
 			return;
 		}
 
@@ -34,12 +36,15 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 		ptold->prstate = PR_READY;
 		insert(currpid, readylist, ptold->prprio);
 	}
-
+	ptold->runtime += ctr1000 - ptold->runstime;
+	ptold->turnaroundtime	= ctr1000 = ptold->prcreatetime;
 	/* Force context switch to highest priority ready process */
 
 	currpid = dequeue(readylist);
 	ptnew = &proctab[currpid];
 	ptnew->prstate = PR_CURR;
+	(ptnew->num_ctxsw)++;
+	ptnew->runstime = ctr1000;
 	preempt = QUANTUM;		/* Reset time slice for process	*/
 	ctxsw(&ptold->prstkptr, &ptnew->prstkptr);
 
