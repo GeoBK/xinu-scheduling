@@ -23,6 +23,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	/* Point to process table entry for the current (old) process */
 
 	ptold = &proctab[currpid];
+	pid32	oldpid=currpid;
 
 	
 	
@@ -37,7 +38,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 		insert(currpid, readylist, ptold->prprio);
 	}
 	ptold->runtime += ctr1000 - ptold->runstime;
-	ptold->turnaroundtime	= ctr1000 = ptold->prcreatetime;
+	
 	/* Force context switch to highest priority ready process */
 
 	currpid = dequeue(readylist);
@@ -46,6 +47,10 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	(ptnew->num_ctxsw)++;
 	ptnew->runstime = ctr1000;
 	preempt = QUANTUM;		/* Reset time slice for process	*/
+	#define DEBUG_CTXSW
+	#ifdef DEBUG_CTXSW  
+	kprintf("ctxsw::%d-%d",oldpid,currpid);
+	#endif
 	ctxsw(&ptold->prstkptr, &ptnew->prstkptr);
 
 	/* Old process returns here when resumed */
