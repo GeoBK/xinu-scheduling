@@ -23,7 +23,12 @@
 	a += nargs -1;			/* Last argument		*/
     
 	for ( ; nargs > 0 ; nargs--)	/* Machine dependent; copy args	*/
-		asm("pushl %0\n" ::"r"(*a--));	/* onto created process's stack	*/
+    {
+        kprintf("%d",(*a));
+        asm("pushl %0\n" ::"r"(*a--));	/* onto created process's stack	*/
+
+    }
+		
 	
 	return create(funcaddr,ssize,priority,name,nargs);
 }
