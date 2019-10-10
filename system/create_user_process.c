@@ -30,11 +30,12 @@
         a--;
 
     }
-    asm("pushl %0\n" ::"r"(nargs));
+    asm("pushl %0\n" ::"r"(nargscopy));
     asm("pushl %0\n" ::"r"(name));
     asm("pushl %0\n" ::"r"(ssize));
     asm("pushl %0\n" ::"r"(funcaddr));
 	asm("call create \n" ::);
 	stacktrace(currpid);
-	return create(funcaddr,ssize,priority,name,nargscopy);
+    asm("ret");
+	//return create(funcaddr,ssize,priority,name,nargscopy);
 }
