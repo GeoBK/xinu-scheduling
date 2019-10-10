@@ -2,7 +2,6 @@
 
 #include <xinu.h>
 
-local	int newpid();
 
 /*------------------------------------------------------------------------
  *  create_user_process  -  Create a user process to start running a function on x86
