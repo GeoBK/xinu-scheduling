@@ -52,12 +52,13 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	
 	ptnew = &proctab[currpid];
 	ptnew->prstate = PR_CURR;
-	(ptnew->num_ctxsw)++;
+	
 	ptnew->runstime = ctr1000;
 	preempt = QUANTUM;		/* Reset time slice for process	*/
 	#define DEBUG_CTXSW
 	#ifdef DEBUG_CTXSW  
 	if(oldpid!=currpid){
+		(ptnew->num_ctxsw)++;
 		kprintf("ctxsw::%d-%d\n",oldpid,currpid);
 	}	
 	#endif
