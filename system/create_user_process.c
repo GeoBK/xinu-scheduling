@@ -110,7 +110,7 @@ void set_tickets(pid32 pid, uint32 tickets)
     prptr->tickets=tickets;
     if(prptr->prstate==PR_READY){
         getitem(pid);
-        insert(pid,readylist,prptr->priority,tickets);
+        insert(pid,readylist,prptr->prprio,tickets);
     }
     
 }
