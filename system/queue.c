@@ -77,7 +77,7 @@ pid32	lottery(
 	}
 	// winner: use some call to a random number generator to 
 	// get a value, between 0 and the total # of tickets 
-	uint32 winner = getrandom(0, totaltickets);
+	uint32 winner = rand()% totaltickets;
 	// current: use this to walk through the list of jobs 
 	pid32	curr = queuehead(q); 
 	while (curr) 
