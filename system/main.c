@@ -36,7 +36,7 @@ process	main(void)
 {    
 	//print_ready_list();	
 	kprintf("hey\n");
-	pid32 pid1=create_user_process((void *)test1, 8192, "test1", 1, 123);
+	//pid32 pid1=create_user_process((void *)test1, 8192, "test1", 1, 123);
 	kprintf("hey2\n");
 	resume(pid1);
 	//burst_execution(1,10,10);
