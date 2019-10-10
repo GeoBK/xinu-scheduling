@@ -610,6 +610,9 @@ extern	syscall	yield(void);
 /*print ready list*/
 extern syscall print_ready_list();
 
+/*burst execution*/
+void burst_execution(uint32 number_bursts, uint32 burst_duration, uint32 sleep_duration);
+
 /* NETWORK BYTE ORDER CONVERSION NOT NEEDED ON A BIG-ENDIAN COMPUTER */
 #define	htons(x)  ((0xff & ((x)>>8)) | ((0xff & (x)) << 8))
 #define	htonl(x)  ((((x)>>24) & 0x000000ff) | (((x)>> 8) & 0x0000ff00) | \
