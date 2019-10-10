@@ -21,10 +21,11 @@ status	insert(
 	}
 
 	curr = firstid(q);
-	while (queuetab[curr].qkey >= key && (queuetab[curr].qkey !=0)) {
+	while (queuetab[curr].qkey >= key ) {
 		curr = queuetab[curr].qnext;
 	}
 
+//&& (queuetab[curr].qkey !=0)
 	//first time a ticket is inserted
 	//number of tickets needs to be less than earlier if tickets are already present
 	//

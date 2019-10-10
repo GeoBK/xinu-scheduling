@@ -22,6 +22,7 @@ status	ready(
 
 	prptr = &proctab[pid];
 	prptr->prstate = PR_READY;
+	kprintf("pid: %d, readylist: %d, priority: %d, tickets: %d",pid, readylist, prptr->prprio, prptr->tickets);
 	insert(pid, readylist, prptr->prprio, prptr->tickets);
 	resched();
 
