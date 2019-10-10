@@ -18,6 +18,7 @@
     
     pri16       priority=1;
     uint32		*a;		/* Points to list of args	*/
+    uint32      nargscopy=nargs;
     /* Push arguments */
 	a = (uint32 *)(&nargs + 1);	/* Start of args		*/
 	a += nargs -1;			/* Last argument		*/
@@ -30,5 +31,5 @@
     }
 		
 	
-	return create(funcaddr,ssize,priority,name,nargs);
+	return create(funcaddr,ssize,priority,name,nargscopy);
 }
