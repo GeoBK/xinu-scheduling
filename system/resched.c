@@ -41,14 +41,14 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	
 	/* Force context switch to highest priority ready process */
 
-	if(proctab[firstid(readylist)].isuserprocess)
-	{
-		currpid	= lottery(readylist);
-	}
-	else
-	{
+	// if(proctab[firstid(readylist)].isuserprocess)
+	// {
+	// 	currpid	= lottery(readylist);
+	// }
+	// else
+	// {
 		currpid = dequeue(readylist);
-	}
+	// }
 	
 	ptnew = &proctab[currpid];
 	ptnew->prstate = PR_CURR;
