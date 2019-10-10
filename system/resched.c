@@ -57,10 +57,11 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	preempt = QUANTUM;		/* Reset time slice for process	*/
 	#define DEBUG_CTXSW
 	#ifdef DEBUG_CTXSW  
-	kprintf("ctxsw::%d-%d\n",oldpid,currpid);
+	if(oldpid!=currpid){
+		kprintf("ctxsw::%d-%d\n",oldpid,currpid);
+	}	
 	#endif
 	ctxsw(&ptold->prstkptr, &ptnew->prstkptr);
-	kprintf("context switch successful\n");
 
 	/* Old process returns here when resumed */
 
