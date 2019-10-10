@@ -102,6 +102,21 @@ pid32	create(
 	return pid;
 }
 
+
+
+// pid32	vcreate(
+// 	  void		*funcaddr,	/* Address of the function	*/
+// 	  uint32	ssize,		/* Stack size in bytes		*/
+// 	  pri16		priority,	/* Process priority > 0		*/
+// 	  char		*name,		/* Name (for debugging)		*/
+// 	  uint32	nargs,		/* Number of args that follow	*/
+// 	  va_list	argp
+// 	)
+// {
+
+// }
+
+
 /*------------------------------------------------------------------------
  *  newpid  -  Obtain a new (free) process ID
  *------------------------------------------------------------------------
