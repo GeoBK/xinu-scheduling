@@ -22,7 +22,7 @@ status	ready(
 
 	prptr = &proctab[pid];
 	prptr->prstate = PR_READY;
-	kprintf("pid: %d, readylist: %d, priority: %d, tickets: %d",pid, readylist, prptr->prprio, prptr->tickets);
+	// kprintf("pid: %d, readylist: %d, priority: %d, tickets: %d",pid, readylist, prptr->prprio, prptr->tickets);
 	insert(pid, readylist, prptr->prprio, prptr->tickets);
 	resched();
 
@@ -31,8 +31,8 @@ status	ready(
 
 syscall print_ready_list(){	
 	int32 curr;
-	for (curr = firstid(readylist);curr != queuetail(readylist);curr = queuetab[curr].qnext) {
-		printf("Ready List\n");
+	printf("Ready List\n");
+	for (curr = firstid(readylist);curr != queuetail(readylist);curr = queuetab[curr].qnext) {		
 		printf("PID: %u \n",(unsigned int)curr);		
 	}
 	return OK;	
