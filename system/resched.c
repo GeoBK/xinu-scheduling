@@ -35,19 +35,27 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 		/* Old process will no longer remain current */
 
 		ptold->prstate = PR_READY;
-		insert(currpid, readylist, ptold->prprio);
+		insert(currpid, readylist, ptold->prprio, ptold->tickets);
 	}
 	ptold->runtime += ctr1000 - ptold->runstime;
 	
 	/* Force context switch to highest priority ready process */
 
-	currpid = dequeue(readylist);
+	if(proctab[firstid(readylist)].isuserprocess)
+	{
+		currpid	= lottery(readylist);
+	}
+	else
+	{
+		currpid = dequeue(readylist);
+	}
+	
 	ptnew = &proctab[currpid];
 	ptnew->prstate = PR_CURR;
 	(ptnew->num_ctxsw)++;
 	ptnew->runstime = ctr1000;
 	preempt = QUANTUM;		/* Reset time slice for process	*/
-	//#define DEBUG_CTXSW
+	#define DEBUG_CTXSW
 	#ifdef DEBUG_CTXSW  
 	kprintf("ctxsw::%d-%d\n",oldpid,currpid);
 	#endif

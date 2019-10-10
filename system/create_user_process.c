@@ -38,7 +38,7 @@
 
 	/* Initialize process table entry for new process */
 	prptr->prstate = PR_SUSP;	/* Initial state is suspended	*/
-	prptr->prprio = 1;
+	prptr->prprio = 0;
 	prptr->prstkbase = (char *)saddr;
 	prptr->prstklen = ssize;
 	prptr->prname[PNMLEN-1] = NULLCH;
@@ -51,6 +51,7 @@
 	prptr->runtime	= 0;
 	prptr->num_ctxsw	= 0;
 	prptr->prcreatetime	= ctr1000;
+    prptr->tickets  = 0;
 
 
 	/* Set up stdin, stdout, and stderr descriptors for the shell	*/
@@ -65,10 +66,9 @@
 
 	/* Push arguments */
 	a = (uint32 *)(&nargs + 1);	/* Start of args		*/
-	a += nargs -1;			/* Last argument		*/
-	kprintf("nargs: %d\n",nargs);
+	a += nargs -1;			/* Last argument		*/	
 	for ( ; nargs > 0 ; nargs--){	/* Machine dependent; copy args	*/
-		kprintf("create arguments: %d\n",*a);
+		//kprintf("create arguments: %d\n",*a);
 		*--saddr = *a--;	/* onto created process's stack	*/
 	}
 	*--saddr = (long)INITRET;	/* Push on return address	*/
@@ -101,4 +101,16 @@
 	*pushsp = (unsigned long) (prptr->prstkptr = (char *)saddr);
 	restore(mask);
 	return pid;
+}
+
+void set_tickets(pid32 pid, uint32 tickets)
+{
+    struct	procent	*prptr;		/* Pointer to proc. table entry */
+    prptr = &proctab[pid];
+    prptr->tickets=tickets;
+    if(prptr->prstate==PR_READY){
+        getitem(pid);
+        insert(pid,readylist,prptr->priority,tickets);
+    }
+    
 }

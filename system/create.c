@@ -53,6 +53,7 @@ pid32	create(
 	prptr->runtime	= 0;
 	prptr->num_ctxsw	= 0;
 	prptr->prcreatetime	= ctr1000;
+	prptr->tickets  = 0;
 
 
 	/* Set up stdin, stdout, and stderr descriptors for the shell	*/

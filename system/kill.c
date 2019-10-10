@@ -30,7 +30,7 @@ syscall	kill(
 		close(prptr->prdesc[i]);
 	}
 	freestk(prptr->prstkbase, prptr->prstklen);
-	prptr->turnaroundtime	= ctr1000 - prptr->prcreatetime;
+	prptr->turnaroundtime	= ctr1000 - prptr->prcreatetime;	
 
 	switch (prptr->prstate) {
 	case PR_CURR:
