@@ -84,7 +84,7 @@ int main() {
 	resume(prA);
 	resume(prB);
 	receive();
-	receive();
+	//receive();
 	sleepms(50); //wait for user processes to terminate	
 	kprintf("\nprocess %d:: runtime=%d, turnaround time=%d, ctx=%d\n",prA, proctab[prA].runtime, proctab[prA].turnaroundtime, proctab[prA].num_ctxsw);
         kprintf("process %d:: runtime=%d, turnaround time=%d, ctx=%d\n",prB, proctab[prB].runtime, proctab[prB].turnaroundtime, proctab[prB].num_ctxsw);
