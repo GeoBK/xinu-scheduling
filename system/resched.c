@@ -60,6 +60,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	kprintf("ctxsw::%d-%d\n",oldpid,currpid);
 	#endif
 	ctxsw(&ptold->prstkptr, &ptnew->prstkptr);
+	kprintf("context switch successful\n");
 
 	/* Old process returns here when resumed */
 
