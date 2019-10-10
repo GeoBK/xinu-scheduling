@@ -77,6 +77,10 @@ pid32	lottery(
 	}
 	// winner: use some call to a random number generator to 
 	// get a value, between 0 and the total # of tickets 
+	if(totaltickets==0){
+		kprintf("totaltickets is 0!!");
+		totaltickets=1;
+	}
 	uint32 winner = rand()% totaltickets;
 	// current: use this to walk through the list of jobs 
 	pid32	curr = queuehead(q); 
