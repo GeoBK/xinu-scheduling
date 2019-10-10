@@ -26,10 +26,11 @@
 	for ( ; nargs > 0 ; nargs--)	/* Machine dependent; copy args	*/
     {
         kprintf("%d",(*a));
-        asm("pushl %0\n" ::"r"(*a--));	/* onto created process's stack	*/
+        asm("pushl %0\n" ::"r"(*a));	/* onto created process's stack	*/
+        a--;
 
     }
 		
-	
+	stacktrace(currpid);
 	return create(funcaddr,ssize,priority,name,nargscopy);
 }

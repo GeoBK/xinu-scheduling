@@ -17,6 +17,7 @@ pid32	create(
 	  ...
 	)
 {
+	stacktrace(currpid);
 	uint32		savsp, *pushsp;
 	intmask 	mask;    	/* Interrupt mask		*/
 	pid32		pid;		/* Stores new process id	*/
