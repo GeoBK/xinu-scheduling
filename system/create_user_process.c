@@ -17,13 +17,13 @@
 {
     
     pri16       priority=1;
-    // uint32		*a;		/* Points to list of args	*/
-    // /* Push arguments */
-	// a = (uint32 *)(&nargs + 1);	/* Start of args		*/
-	// a += nargs -1;			/* Last argument		*/
-    // asm()
-	// for ( ; nargs > 0 ; nargs--)	/* Machine dependent; copy args	*/
-	// 	*--saddr = *a--;	/* onto created process's stack	*/
-	// *--saddr = (long)INITRET;	/* Push on return address	*/
+    uint32		*a;		/* Points to list of args	*/
+    /* Push arguments */
+	a = (uint32 *)(&nargs + 1);	/* Start of args		*/
+	a += nargs -1;			/* Last argument		*/
+    
+	for ( ; nargs > 0 ; nargs--)	/* Machine dependent; copy args	*/
+		asm("pushl %0\n" ::"r"(*a--));	/* onto created process's stack	*/
+	
 	return create(funcaddr,ssize,priority,name,nargs);
 }
