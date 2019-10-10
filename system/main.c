@@ -34,10 +34,10 @@ void test1(uint32 a){
 }
 process	main(void)
 {    
-	print_ready_list();	
+	//print_ready_list();	
 	pid32 pid1=create_user_process((void *)test1, 8192, "test1", 1, 123);
 	resume(pid1);
-	burst_execution(1,10,10);
+	//burst_execution(1,10,10);
 	return OK;
     
 }
