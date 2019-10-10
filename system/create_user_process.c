@@ -17,7 +17,8 @@
 {
 	uint32		savsp, *pushsp;
 	intmask 	mask;    	/* Interrupt mask		*/
-	pid32		pid;		/* Stores new process id	*/	
+	pid32		pid;		/* Stores new process id	*/
+	struct	procent	*prptr;		/* Pointer to proc. table entry */
 	int32		i;
 	uint32		*a;		/* Points to list of args	*/
 	uint32		*saddr;		/* Stack address		*/
@@ -26,7 +27,7 @@
 	if (ssize < MINSTK)
 		ssize = MINSTK;
 	ssize = (uint32) roundmb(ssize);
-	if ( ((pid=newpid()) == SYSERR) ||
+	if (((pid=newpid()) == SYSERR) ||
 	     ((saddr = (uint32 *)getstk(ssize)) == (uint32 *)SYSERR) ) {
 		restore(mask);
 		return SYSERR;
