@@ -52,6 +52,7 @@
 	prptr->num_ctxsw	= 0;
 	prptr->prcreatetime	= ctr1000;
     prptr->tickets  = 0;
+    prptr->isuserprocess  = 1;
 
 
 	/* Set up stdin, stdout, and stderr descriptors for the shell	*/
