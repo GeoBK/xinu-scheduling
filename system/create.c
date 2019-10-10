@@ -25,7 +25,7 @@ pid32	create(
 	uint32		*a;		/* Points to list of args	*/
 	uint32		*saddr;		/* Stack address		*/
 
-	mask = disable();
+	//mask = disable();
 	if (ssize < MINSTK)
 		ssize = MINSTK;
 	ssize = (uint32) roundmb(ssize);
@@ -68,6 +68,7 @@ pid32	create(
 	/* Push arguments */
 	a = (uint32 *)(&nargs + 1);	/* Start of args		*/
 	a += nargs -1;			/* Last argument		*/
+	kprintf("nargs: %d\n",nargs);
 	for ( ; nargs > 0 ; nargs--){	/* Machine dependent; copy args	*/
 		kprintf("create arguments: %d\n",*a);
 		*--saddr = *a--;	/* onto created process's stack	*/
@@ -100,7 +101,7 @@ pid32	create(
 	*--saddr = 0;			/* %esi */
 	*--saddr = 0;			/* %edi */
 	*pushsp = (unsigned long) (prptr->prstkptr = (char *)saddr);
-	restore(mask);
+	//restore(mask);
 	return pid;
 }
 

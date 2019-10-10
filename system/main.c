@@ -29,8 +29,8 @@ void sync_printf(char *fmt, ...)
 	__builtin_apply((void*)kprintf, arg, 100);
 	restore(mask);
 }
-void test1(){
-	printf("test1 \n");
+void test1(uint32 a){
+	printf("test1 : %d\n",a);
 }
 process	main(void)
 {    
