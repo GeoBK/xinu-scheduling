@@ -106,6 +106,8 @@
 
 void set_tickets(pid32 pid, uint32 tickets)
 {
+    intmask 	mask;    	/* Interrupt mask		*/
+    mask = disable();
     struct	procent	*prptr;		/* Pointer to proc. table entry */
     prptr = &proctab[pid];
     prptr->tickets=tickets;
@@ -113,5 +115,6 @@ void set_tickets(pid32 pid, uint32 tickets)
         getitem(pid);
         insert(pid,readylist,prptr->prprio,tickets);
     }
+    restore(mask);
     
 }
