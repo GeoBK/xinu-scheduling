@@ -39,6 +39,7 @@ process	main(void)
 	pid32 pid1=create_user_process((void *)test1, 8192, "test1", 1, 123);
 	kprintf("hey2\n");
 	resume(pid1);
+	set_tickets(pid1,50);
 	//burst_execution(1,10,10);
 	return OK;
     
