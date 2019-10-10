@@ -7,6 +7,7 @@ void burst_execution(uint32 number_bursts, uint32 burst_duration, uint32 sleep_d
     {
         int stime = ctr1000;
         while((ctr1000-stime)<burst_duration);
+        kprintf("Going to sleep pid: %d\n",currpid)
         sleepms(sleep_duration);
     }
 
