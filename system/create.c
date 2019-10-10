@@ -68,8 +68,10 @@ pid32	create(
 	/* Push arguments */
 	a = (uint32 *)(&nargs + 1);	/* Start of args		*/
 	a += nargs -1;			/* Last argument		*/
-	for ( ; nargs > 0 ; nargs--)	/* Machine dependent; copy args	*/
+	for ( ; nargs > 0 ; nargs--){	/* Machine dependent; copy args	*/
+		kprintf("create arguments: %d\n",*a);
 		*--saddr = *a--;	/* onto created process's stack	*/
+	}
 	*--saddr = (long)INITRET;	/* Push on return address	*/
 
 	/* The following entries on the stack must match what ctxsw	*/

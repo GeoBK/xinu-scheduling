@@ -33,11 +33,11 @@ void test1(){
 	printf("test1 \n");
 }
 process	main(void)
-{
-	pid32 pid1 = create((void *)test1, 8192, 50, "test1", 1);
-    resume(pid1);
+{    
 	print_ready_list();	
-	burst_execution(10,10,10);
+	pid32 pid1=create_user_process((void *)test1, 8192, "test1", 1, 123);
+	resume(pid1);
+	burst_execution(1,10,10);
 	return OK;
     
 }
