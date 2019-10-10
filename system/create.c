@@ -17,7 +17,6 @@ pid32	create(
 	  ...
 	)
 {
-	stacktrace(currpid);
 	uint32		savsp, *pushsp;
 	intmask 	mask;    	/* Interrupt mask		*/
 	pid32		pid;		/* Stores new process id	*/
@@ -26,7 +25,7 @@ pid32	create(
 	uint32		*a;		/* Points to list of args	*/
 	uint32		*saddr;		/* Stack address		*/
 
-	//mask = disable();
+	mask = disable();
 	if (ssize < MINSTK)
 		ssize = MINSTK;
 	ssize = (uint32) roundmb(ssize);
@@ -69,11 +68,8 @@ pid32	create(
 	/* Push arguments */
 	a = (uint32 *)(&nargs + 1);	/* Start of args		*/
 	a += nargs -1;			/* Last argument		*/
-	kprintf("nargs: %d\n",nargs);
-	for ( ; nargs > 0 ; nargs--){	/* Machine dependent; copy args	*/
-		kprintf("create arguments: %d\n",*a);
+	for ( ; nargs > 0 ; nargs--)	/* Machine dependent; copy args	*/
 		*--saddr = *a--;	/* onto created process's stack	*/
-	}
 	*--saddr = (long)INITRET;	/* Push on return address	*/
 
 	/* The following entries on the stack must match what ctxsw	*/
@@ -102,24 +98,9 @@ pid32	create(
 	*--saddr = 0;			/* %esi */
 	*--saddr = 0;			/* %edi */
 	*pushsp = (unsigned long) (prptr->prstkptr = (char *)saddr);
-	//restore(mask);
+	restore(mask);
 	return pid;
 }
-
-
-
-// pid32	vcreate(
-// 	  void		*funcaddr,	/* Address of the function	*/
-// 	  uint32	ssize,		/* Stack size in bytes		*/
-// 	  pri16		priority,	/* Process priority > 0		*/
-// 	  char		*name,		/* Name (for debugging)		*/
-// 	  uint32	nargs,		/* Number of args that follow	*/
-// 	  va_list	argp
-// 	)
-// {
-
-// }
-
 
 /*------------------------------------------------------------------------
  *  newpid  -  Obtain a new (free) process ID
