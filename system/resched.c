@@ -42,8 +42,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	/* Force context switch to highest priority ready process */
 
 	if(proctab[firstid(readylist)].isuserprocess)
-	{
-		kprintf("\nUsing lottery scheduler!!!-------------\n");
+	{		
 		currpid	= lottery(readylist);
 	}
 	else
