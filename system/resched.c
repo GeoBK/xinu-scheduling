@@ -27,7 +27,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 
 	
 	
-	if (ptold->prstate == PR_CURR || ptold->prstate == PR_CURR) {  /* Process remains eligible */
+	if (ptold->prstate == PR_CURR) {  /* Process remains eligible */
 		if (ptold->prprio > firstkey(readylist)) {			
 			return;
 		}
