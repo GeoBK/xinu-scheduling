@@ -24,7 +24,7 @@ status	ready(
 	prptr->prstate = PR_READY;
 	// kprintf("pid: %d, readylist: %d, priority: %d, tickets: %d",pid, readylist, prptr->prprio, prptr->tickets);
 	insert(pid, readylist, prptr->prprio, prptr->tickets);
-	print_ready_list();
+	//print_ready_list();
 	resched();
 
 	return OK;
