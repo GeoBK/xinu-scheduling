@@ -406,7 +406,7 @@ void timed_execution(uint32 runtime){
 // }
 void run_for_time(int t)
 {	
-	while(ctr1000-proctab[currpid].runstime<t);
+	while(ctr1000-proctab[currpid].prcreatetime<t);
 }
 
 int main(){
@@ -414,7 +414,7 @@ int main(){
 	kprintf("=== TESTCASE 1::  CPU-intensive jobs =============================\n");
 	pid32 prA, prB;
 	int runtime;
-	for(runtime=0;runtime<1000;runtime=+10)
+	for(runtime=0;runtime<1000;runtime+=10)
 	{
 		prA = create_user_process(run_for_time, 1024, "timed_execution", 1, runtime);
 		prB = create_user_process(run_for_time, 1024, "timed_execution", 1, runtime);	
@@ -435,6 +435,7 @@ int main(){
 		
 		kprintf("runtime :: %d, runtime ratio: %0.4f\n",runtime,(float)proctab[prA].runtime/(float)proctab[prB].runtime);
 	}
+	return OK;
 	
 
 
