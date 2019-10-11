@@ -414,7 +414,7 @@ int main(){
 	kprintf("=== TESTCASE 1::  CPU-intensive jobs =============================\n");
 	pid32 prA, prB;
 	int runtime;
-	for(runtime=0;runtime<100000;runtime+=10000)
+	for(runtime=0;runtime<50000;runtime+=1000)
 	{
 		prA = create_user_process(run_for_time, 1024, "timed_execution", 1, runtime);
 		prB = create_user_process(run_for_time, 1024, "timed_execution", 1, runtime);	
