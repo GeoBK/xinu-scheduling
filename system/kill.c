@@ -15,7 +15,7 @@ syscall	kill(
 	int32	i;			/* Index into descriptors	*/
 
 	mask = disable();
-	kprintf("kill: %d\n",pid);
+	//kprintf("kill: %d\n",pid);
 	if (isbadpid(pid) || (pid == NULLPROC)
 	    || ((prptr = &proctab[pid])->prstate) == PR_FREE) {
 		restore(mask);
