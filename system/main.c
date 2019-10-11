@@ -430,10 +430,10 @@ int main(){
 
 		sleepms(50); // wait for user processes to terminate	
 
-		kprintf("process %d:: runtime=%d, turnaround time=%d, ctx=%d\n",prA, proctab[prA].runtime, proctab[prA].turnaroundtime, proctab[prA].num_ctxsw);
-		kprintf("process %d:: runtime=%d, turnaround time=%d, ctx=%d\n",prB, proctab[prB].runtime, proctab[prB].turnaroundtime, proctab[prB].num_ctxsw);
+		//kprintf("process %d:: runtime=%d, turnaround time=%d, ctx=%d\n",prA, proctab[prA].runtime, proctab[prA].turnaroundtime, proctab[prA].num_ctxsw);
+		//kprintf("process %d:: runtime=%d, turnaround time=%d, ctx=%d\n",prB, proctab[prB].runtime, proctab[prB].turnaroundtime, proctab[prB].num_ctxsw);
 		
-		kprintf("runtime :: %d, runtime ratio: %0.4f\n",runtime,(float)proctab[prA].runtime/(float)proctab[prB].runtime);
+		kprintf("%0.4f\n",(float)proctab[prA].runtime/(float)proctab[prB].runtime);
 	}
 	return OK;
 	
