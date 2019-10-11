@@ -15,7 +15,7 @@ syscall	send(
 	struct	procent *prptr;		/* Ptr to process's table entry	*/
 
 	mask = disable();
-	kprintf("send called pid: %d",pid);
+	
 	if (isbadpid(pid)) {
 		restore(mask);
 		return SYSERR;
@@ -32,6 +32,7 @@ syscall	send(
 	/* If recipient waiting or in timed-wait make it ready */
 
 	if (prptr->prstate == PR_RECV) {
+		kprintf("send called pid: %d",pid);
 		ready(pid);
 	} else if (prptr->prstate == PR_RECTIM) {
 		unsleep(pid);
