@@ -86,6 +86,7 @@ int main() {
 	kprintf("1\n");
 	receive();
 	kprintf("2\n");
+	print_ready_list();
 	receive();
 	kprintf("3\n");
 	sleepms(50); //wait for user processes to terminate	
