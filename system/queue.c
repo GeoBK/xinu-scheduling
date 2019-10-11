@@ -94,7 +94,7 @@ pid32	lottery(
 		curr = queuetab[curr].qnext;
 	}
 	// ’current’ is the winner: schedule it...		
-	kprintf("curr: %d",curr);
+	//kprintf("curr: %d",curr);
 	pid = getitem(curr);
 	queuetab[pid].qprev = EMPTY;
 	queuetab[pid].qnext = EMPTY;

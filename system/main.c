@@ -341,12 +341,12 @@ int main() {
 	set_tickets(prB, 50);
 	set_tickets(prC, 0);
 
-	print_ready_list();
+	
 	
 	resume(prA);
 	resume(prB);
 	resume(prC);
-
+	print_ready_list();
 	receive();	
 	receive();	
 
