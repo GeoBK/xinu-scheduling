@@ -81,8 +81,10 @@ pid32	lottery(
 		kprintf("totaltickets is 0!!\n");
 		totaltickets=1;
 	}
+	kprintf("totaltickets : %d\n",totaltickets);
 	uint32 winner = rand()% totaltickets;
 	// current: use this to walk through the list of jobs 
+	kprintf("winner : %d\n",winner);
 	pid32	curr = firstid(q); 
 	while (curr!=0) 
 	{
@@ -92,7 +94,7 @@ pid32	lottery(
 		curr = queuetab[curr].qnext;
 	}
 	// ’current’ is the winner: schedule it...		
-
+	kprintf("curr: %d",curr);
 	pid = getitem(curr);
 	queuetab[pid].qprev = EMPTY;
 	queuetab[pid].qnext = EMPTY;

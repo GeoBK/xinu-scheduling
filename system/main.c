@@ -340,6 +340,8 @@ int main() {
 	set_tickets(prA, 50);
 	set_tickets(prB, 50);
 	set_tickets(prC, 0);
+
+	print_ready_list();
 	
 	resume(prA);
 	resume(prB);
