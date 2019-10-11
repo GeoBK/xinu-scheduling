@@ -32,7 +32,7 @@ syscall	send(
 	/* If recipient waiting or in timed-wait make it ready */
 
 	if (prptr->prstate == PR_RECV) {
-		kprintf("send called pid: %d",pid);
+		//kprintf("send called pid: %d",pid);
 		ready(pid);
 	} else if (prptr->prstate == PR_RECTIM) {
 		unsleep(pid);
