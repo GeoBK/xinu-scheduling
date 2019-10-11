@@ -15,6 +15,7 @@ syscall	send(
 	struct	procent *prptr;		/* Ptr to process's table entry	*/
 
 	mask = disable();
+	kprintf("send called pid: %d",pid);
 	if (isbadpid(pid)) {
 		restore(mask);
 		return SYSERR;
