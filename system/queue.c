@@ -1,6 +1,8 @@
 /* queue.c - enqueue, dequeue */
 
 #include <xinu.h>
+#define TIME_ALLOTMENT 20 
+#define PRIORITY_BOOST_PERIOD 20 
 
 struct qentry	queuetab[NQENT];	/* Table of process queues	*/
 
@@ -100,4 +102,8 @@ pid32	lottery(
 	queuetab[pid].qnext = EMPTY;
 
 	return pid;
+}
+
+pid32 mlfq(){
+
 }

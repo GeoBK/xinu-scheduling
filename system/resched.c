@@ -43,7 +43,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 
 	if(proctab[firstid(readylist)].isuserprocess)
 	{		
-		currpid	= lottery(readylist);
+		currpid	= mlfq(readylist);
 		//kprintf("inide lottery scheduler!!\n");
 	}
 	else
