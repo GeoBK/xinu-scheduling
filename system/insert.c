@@ -28,7 +28,7 @@ status	insert(
 	//first time a ticket is inserted
 	//number of tickets needs to be less than earlier if tickets are already present
 	//
-	while ((queuetab[curr].qkey ==0) && (queuetab[curr].qtickets > tickets || (queuetab[curr].qtickets == tickets && (curr<pid || curr==0)))){
+	while ((queuetab[curr].qkey ==0 && key==0) && (queuetab[curr].qtickets > tickets || (queuetab[curr].qtickets == tickets && (curr<pid || curr==0)))){
 		
 		curr = queuetab[curr].qnext;
 	}
