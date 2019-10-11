@@ -81,10 +81,10 @@ pid32	lottery(
 		kprintf("totaltickets is 0!!\n");
 		totaltickets=1;
 	}
-	kprintf("totaltickets : %d\n",totaltickets);
+	//kprintf("totaltickets : %d\n",totaltickets);
 	uint32 winner = rand()% totaltickets;
 	// current: use this to walk through the list of jobs 
-	kprintf("winner : %d\n",winner);
+	//kprintf("winner : %d\n",winner);
 	pid32	curr = firstid(q); 
 	while (curr!=0) 
 	{
