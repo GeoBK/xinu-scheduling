@@ -6,7 +6,7 @@ void burst_execution(uint32 number_bursts, uint32 burst_duration, uint32 sleep_d
     for(i=1;i<=number_bursts;i++)
     {
         int stime = ctr1000;
-        while((proctab[currpid].runtime+ctr1000-proctab[currpid].runstime)<i*burst_duration);
+        while((proctab[currpid].runtime+ctr1000-proctab[currpid].runstime)<(i*burst_duration));
         sleepms(sleep_duration);
     }
 

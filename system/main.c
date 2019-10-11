@@ -148,8 +148,8 @@ int main() {
 	sync_printf("=== TESTCASE 2::  2 processes with burst execution - context switches ===\n");	
 	prA = create_user_process(burst_execution, 1024, "burst_execution", 3, 4, 40, 40);
 	prB = create_user_process(burst_execution, 1024, "burst_execution", 3, 4, 40, 40);
-	set_tickets(prA, 50);
-	set_tickets(prB, 50);
+	set_tickets(prA, 90);
+	set_tickets(prB, 10);
 	resume(prA);
 	resume(prB);
 	receive();
