@@ -42,7 +42,7 @@ void	clkhandler()
 
 	if((--preempt) <= 0) {
 		preempt = QUANTUM;
-		//kprintf("clock handler pid: %d\n",currpid);
+		kprintf("clock handler pid: %d\n",currpid);
 		resched();
 	}
 	//kprintf("reset_counter: %d, preempt : %d\n", reset_counter,preempt);

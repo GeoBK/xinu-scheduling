@@ -53,6 +53,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 
 	if(ptnew->isuserprocess==1){
 		preempt = QUANTUM*(8*(2^(-1*queuetab[currpid].mlfqpriority)));		/* Reset time slice for process	*/
+		kprintf("preempt after scheduling: %d\n",preempt);
 	}else{
 		preempt = QUANTUM;
 	}	
