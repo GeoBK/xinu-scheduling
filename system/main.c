@@ -19,6 +19,7 @@ int main() {
 
 	resume(prA);
 	resume(prB);
+	print_ready_list();
 
 	receive();	
 	receive();	
