@@ -29,7 +29,7 @@ status	insert(
 		curr = queuetab[curr].qnext;
 	}
 	kprintf("curr between loops: %d\n",curr);
-	int mlfqpriority=3;
+	int mlfqpriority=0;
 	if(isuserprocess==1)
 	{
 		kprintf("inside userprocess loop\n");
