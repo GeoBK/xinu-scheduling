@@ -15,7 +15,7 @@ void	wakeup(void)
 		pid32 pidd=dequeue(sleepq);
 		//kprintf("Process being woken up: %d",pidd);
 		ready(pidd);
-		print_ready_list();
+		//print_ready_list();
 	}
 
 	resched_cntl(DEFER_STOP);

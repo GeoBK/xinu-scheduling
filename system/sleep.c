@@ -47,7 +47,7 @@ syscall	sleepms(
 	}
 
 	proctab[currpid].prstate = PR_SLEEP;
-	kprintf("thread asleep\n");
+	//kprintf("thread asleep\n");
 	resched();
 	restore(mask);
 	return OK;
