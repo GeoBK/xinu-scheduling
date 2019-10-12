@@ -22,22 +22,22 @@ status	insert(
 	}
 	//kprintf("Inside insert !\n");
 	curr = firstid(q);
-	kprintf("curr before loop: %d\n",curr);
+	//kprintf("curr before loop: %d\n",curr);
 
 	while (queuetab[curr].qkey >= key && (queuetab[curr].isuserprocess == 0) && curr!=0) 
 	{
-		kprintf("old_curr:%d, priority: %d , new curr: %d, new key: %d",curr,queuetab[curr].qkey,pid,key);
+		//kprintf("old_curr:%d, priority: %d , new curr: %d, new key: %d",curr,queuetab[curr].qkey,pid,key);
 		curr = queuetab[curr].qnext;
 	}
-	kprintf("curr between loops: %d\n",curr);
+	//kprintf("curr between loops: %d\n",curr);
 	int mlfqpriority=0;
 	if(isuserprocess==1)
 	{
-		kprintf("inside userprocess loop\n");
+		//kprintf("inside userprocess loop\n");
 		proctab[pid].tatracker+=timeslicelength;
 		if(proctab[pid].tatracker>TIME_ALLOTMENT)
 		{
-			kprintf("inside time allotment thing loop\n");
+			//kprintf("inside time allotment thing loop\n");
 			proctab[pid].tatracker=0;
 			if(proctab[pid].mlfqpriority!=1)
 			{
@@ -46,12 +46,12 @@ status	insert(
 		}
 		mlfqpriority=proctab[pid].mlfqpriority;
 		while (queuetab[curr].mlfqpriority >= mlfqpriority){	
-			kprintf("inside for loop, curr: %d, curr priority %d, mlfqpriority: %d\n",curr, queuetab[curr].mlfqpriority, mlfqpriority);	
+			//kprintf("inside for loop, curr: %d, curr priority %d, mlfqpriority: %d\n",curr, queuetab[curr].mlfqpriority, mlfqpriority);	
 			curr = queuetab[curr].qnext;
 		}
 		
 	}
-	kprintf("curr: %d\n",curr);
+	//kprintf("curr: %d\n",curr);
 	/* Insert process between curr node and previous node */
 
 	prev = queuetab[curr].qprev;	/* Get index of previous node	*/

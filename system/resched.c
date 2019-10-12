@@ -32,7 +32,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	
 	if (ptold->prstate == PR_CURR) {  /* Process remains eligible */
 		if (ptold->prprio > firstkey(readylist)) {
-			kprintf("return \n");			
+			//kprintf("return \n");			
 			return;
 		}
 
@@ -61,7 +61,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 		}else if(queuetab[currpid].mlfqpriority==1){
 			preempt=QUANTUM*4;
 		}		
-		kprintf("preempt after scheduling: %d\n",preempt);
+		//kprintf("preempt after scheduling: %d\n",preempt);
 	}else{
 		preempt = QUANTUM;
 	}	
