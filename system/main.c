@@ -77,6 +77,7 @@ int main() {
 		print_ready_list();
 
         receive();
+		print_ready_list();
         receive();
         receive();
         receive();
