@@ -614,11 +614,9 @@ extern syscall print_ready_list();
 extern void burst_execution(uint32 number_bursts, uint32 burst_duration, uint32 sleep_duration);
 
 /**/
-extern void set_tickets(pid32 pid, uint32 tickets); 
-
 extern	pid32	create_user_process(void *, uint32, char *, uint32, ...);
 
-extern pid32	lottery(qid16 q);
+extern	void	resched(void);
 
 /* NETWORK BYTE ORDER CONVERSION NOT NEEDED ON A BIG-ENDIAN COMPUTER */
 #define	htons(x)  ((0xff & ((x)>>8)) | ((0xff & (x)) << 8))

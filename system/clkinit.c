@@ -6,6 +6,7 @@ uint32	clktime;		/* Seconds since boot			*/
 uint32	ctr1000;		/* Milliseconds since boot		*/
 qid16	sleepq;			/* Queue of sleeping processes		*/
 uint32	preempt;		/* Preemption counter			*/
+uint32	reset_counter;
 
 /*------------------------------------------------------------------------
  * clkinit  -  Initialize the clock and sleep queue at startup (x86)
@@ -22,6 +23,7 @@ void	clkinit(void)
 	/* Initialize the preemption count */
 
 	preempt = QUANTUM;
+	reset_counter = PRIORITY_BOOST_PERIOD;
 
 	/* Initialize the time since boot to zero */
 
