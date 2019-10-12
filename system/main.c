@@ -1,6 +1,7 @@
 #include <xinu.h>
 #include <stdio.h>
 
+
 void timed_execution(uint32 runtime){
 	    while(proctab[currpid].runtime<runtime);
 }

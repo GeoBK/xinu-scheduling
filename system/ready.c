@@ -30,13 +30,16 @@ status	ready(
 	return OK;
 }
 
+
 syscall print_ready_list(){	
 	int32 curr;
-	printf("Ready List\t");
+	intmask mask = disable();
+	kprintf("Ready List\t");
 	for (curr = firstid(readylist);curr != queuetail(readylist);curr = queuetab[curr].qnext) {		
-		printf("PID: %u, mlfq pr: %d, key: %d -> ",(unsigned int)curr,queuetab[curr].mlfqpriority,queuetab[curr].qkey);		
+		kprintf("PID: %u, mlfq pr: %d, key: %d -> ",(unsigned int)curr,queuetab[curr].mlfqpriority,queuetab[curr].qkey);		
 	}
-	printf("\n");
+	kprintf("\n");
+	restore(mask);
 	return OK;	
 	
 }
