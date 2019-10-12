@@ -1,6 +1,6 @@
 /* resched.c - resched, resched_cntl */
-#define TIME_ALLOTMENT 20 
-#define PRIORITY_BOOST_PERIOD 20 
+
+
 #include <xinu.h>
 
 struct	defer	Defer;

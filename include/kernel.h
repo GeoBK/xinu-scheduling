@@ -64,6 +64,8 @@ extern	qid16	readylist;	/* global ID for list of ready processes*/
 
 #define PRIORITY_BOOST_PERIOD 20 
 
+#define TIME_ALLOTMENT 20 
+
 /* Size of the stack for the null process */
 
 #define	NULLSTK		8192	/* stack size for null process		*/
