@@ -73,11 +73,13 @@ int main() {
         resume(prB);
         resume(prC);
         resume(prD);
+		print_ready_list();
 
         receive();
         receive();
         receive();
         receive();
+		print_ready_list();
 
         sleepms(50); // wait for user processes to terminate    
 

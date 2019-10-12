@@ -13,7 +13,7 @@ umsg32	receive(void)
 	umsg32	msg;			/* Message to return		*/
 
 	mask = disable();
-	//kprintf("receive called : %d\n",currpid);
+	kprintf("receive called : %d\n",currpid);
 	prptr = &proctab[currpid];
 	if (prptr->prhasmsg == FALSE) {
 		prptr->prstate = PR_RECV;
