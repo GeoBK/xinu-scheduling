@@ -31,7 +31,7 @@ void	clkhandler()
 
 		/* Decrement the delay for the first process on the	*/
 		/*   sleep queue, and awaken if the count reaches zero	*/
-		kprintf("head sleep counter : %d\n"queuetab[firstid(sleepq)].qkey);
+		kprintf("head sleep counter : %d\n",queuetab[firstid(sleepq)].qkey);
 		if((--queuetab[firstid(sleepq)].qkey) <= 0) {
 			kprintf("Wake up called \n");
 			wakeup();
