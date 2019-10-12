@@ -23,11 +23,14 @@ status	insert(
 	//kprintf("Inside insert !\n");
 	curr = firstid(q);
 
-	while (queuetab[curr].qkey >= key && (queuetab[curr].isuserprocess == 0)) {
+	while (queuetab[curr].qkey >= key && (queuetab[curr].isuserprocess == 0) && curr!=0) 
+	{
 		curr = queuetab[curr].qnext;
 	}
 	int mlfqpriority=3;
-	if(isuserprocess==1){
+	if(isuserprocess==1)
+	{
+		kprintf("inside userprocess loop\n");
 		proctab[pid].tatracker+=timeslicelength;
 		if(proctab[pid].tatracker>TIME_ALLOTMENT)
 		{
