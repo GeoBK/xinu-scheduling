@@ -12,6 +12,7 @@ void priority_boost()
         if(proctab[i].prstate != PR_FREE && proctab[i].isuserprocess == 1)
         {
             proctab[i].mlfqpriority=3;
+            proctab[i].tatracker=0;
         }
     }
 
