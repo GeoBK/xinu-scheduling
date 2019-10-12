@@ -32,15 +32,17 @@ syscall	kill(
 	}
 	freestk(prptr->prstkbase, prptr->prstklen);
 		
-
+	
 	switch (prptr->prstate) {
 	case PR_CURR:
+		prptr->turnaroundtime	= ctr1000 - prptr->prcreatetime;
 		prptr->prstate = PR_FREE;	/* Suicide */
 		resched();
 
 	case PR_SLEEP:
 	case PR_RECTIM:
 		unsleep(pid);
+		prptr->turnaroundtime	= ctr1000 - prptr->prcreatetime;
 		prptr->prstate = PR_FREE;
 		break;
 
@@ -53,9 +55,10 @@ syscall	kill(
 		/* Fall through */
 
 	default:
+		prptr->turnaroundtime	= ctr1000 - prptr->prcreatetime;
 		prptr->prstate = PR_FREE;
 	}
-	prptr->turnaroundtime	= ctr1000 - prptr->prcreatetime;
+	
 
 	restore(mask);
 	return OK;
