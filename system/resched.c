@@ -52,7 +52,15 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	ptnew->runstime = ctr1000;
 
 	if(ptnew->isuserprocess==1){
-		preempt = QUANTUM*(8*(2^(-1*queuetab[currpid].mlfqpriority)));		/* Reset time slice for process	*/
+		if(queuetab[currpid].mlfqpriority==3)
+		{
+			preempt=QUANTUM;
+		}else if(queuetab[currpid].mlfqpriority==2)
+		{
+			preempt=QUANTUM*2;
+		}else if(queuetab[currpid].mlfqpriority==1){
+			preempt=QUANTUM*4;
+		}		
 		kprintf("preempt after scheduling: %d\n",preempt);
 	}else{
 		preempt = QUANTUM;
