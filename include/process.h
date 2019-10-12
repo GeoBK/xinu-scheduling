@@ -60,6 +60,7 @@ struct procent {		/* Entry in the process table		*/
 	uint32 	num_ctxsw; 
 	uint32 	tatracker;
 	bool8	isuserprocess;
+	uint32 	mlfqpriority;
 };
 
 /* Marker for the top of a process stack (used to help detect overflow)	*/
