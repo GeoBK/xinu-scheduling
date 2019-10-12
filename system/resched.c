@@ -14,7 +14,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	struct procent *ptold;	/* Ptr to table entry for old process	*/
 	struct procent *ptnew;	/* Ptr to table entry for new process	*/
 
-	kprintf("Inside resched!");
+	//kprintf("Inside resched!");
 
 	/* If rescheduling is deferred, record attempt and return */
 
@@ -69,7 +69,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	if(oldpid!=currpid){
 		(ptnew->num_ctxsw)++;		
 	}
-	#define DEBUG_CTXSW
+	//#define DEBUG_CTXSW
 	#ifdef DEBUG_CTXSW  
 	if(oldpid!=currpid){		
 		kprintf("ctxsw::%d-%d\n",oldpid,currpid);
