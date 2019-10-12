@@ -42,8 +42,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 		insert(currpid, readylist, ptold->prprio, ptold->isuserprocess, ctr1000 - ptold->runstime);
 		//kprintf("PID to insert: %d \n", currpid);
 		print_ready_list();
-	}
-	ptold->runtime += ctr1000 - ptold->runstime;
+	}	
 
 	//print_ready_list();
 	
