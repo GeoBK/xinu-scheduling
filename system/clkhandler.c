@@ -45,7 +45,7 @@ void	clkhandler()
 		//kprintf("clock handler pid: %d\n",currpid);
 		resched();
 	}
-
+	kprintf("reset_counter: %d, preempt : %d", reset_counter,preempt);
 	if((--reset_counter) <= 0)
 	{
 		reset_counter = PRIORITY_BOOST_PERIOD;
