@@ -27,6 +27,7 @@ status	insert(
 	{
 		curr = queuetab[curr].qnext;
 	}
+	kprintf("curr between loops: %d\n",curr);
 	int mlfqpriority=3;
 	if(isuserprocess==1)
 	{
@@ -43,7 +44,7 @@ status	insert(
 		}
 		mlfqpriority=proctab[pid].mlfqpriority;
 		while (queuetab[curr].mlfqpriority >= mlfqpriority){	
-			kprintf("inside for loop\n");	
+			kprintf("inside for loop, curr: %d, curr priority %d, mlfqpriority: %d\n",curr, queuetab[curr].mlfqpriority, mlfqpriority);	
 			curr = queuetab[curr].qnext;
 		}
 		
