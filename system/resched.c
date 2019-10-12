@@ -41,7 +41,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 		ptold->prstate = PR_READY;
 		insert(currpid, readylist, ptold->prprio, ptold->isuserprocess, ctr1000 - ptold->runstime);
 		//kprintf("PID to insert: %d \n", currpid);
-		//print_ready_list();
+		print_ready_list();
 	}
 	ptold->runtime += ctr1000 - ptold->runstime;
 
@@ -75,7 +75,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 		(ptnew->num_ctxsw)++;	
 		ctxsw(&ptold->prstkptr, &ptnew->prstkptr);	
 	}
-	//#define DEBUG_CTXSW
+	#define DEBUG_CTXSW
 	#ifdef DEBUG_CTXSW  
 	if(oldpid!=currpid){		
 		kprintf("ctxsw::%d-%d\n",oldpid,currpid);
