@@ -24,7 +24,7 @@ status	insert(
 	curr = firstid(q);
 	//kprintf("curr before loop: %d\n",curr);
 
-	while (queuetab[curr].qkey >= key && (queuetab[curr].isuserprocess == 0) && curr!=0) 
+	while (queuetab[curr].qkey >= key && (queuetab[curr].isuserprocess == 0 || pid==0) && curr!=0) 
 	{
 		//kprintf("old_curr:%d, priority: %d , new curr: %d, new key: %d",curr,queuetab[curr].qkey,pid,key);
 		curr = queuetab[curr].qnext;
