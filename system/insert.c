@@ -34,6 +34,7 @@ status	insert(
 		proctab[pid].tatracker+=timeslicelength;
 		if(proctab[pid].tatracker>TIME_ALLOTMENT)
 		{
+			kprintf("inside time allotment thing loop\n");
 			proctab[pid].tatracker=0;
 			if(proctab[pid].mlfqpriority!=1)
 			{
@@ -41,12 +42,13 @@ status	insert(
 			}
 		}
 		mlfqpriority=proctab[pid].mlfqpriority;
-		while (queuetab[curr].mlfqpriority >= mlfqpriority){		
+		while (queuetab[curr].mlfqpriority >= mlfqpriority){	
+			kprintf("inside for loop\n");	
 			curr = queuetab[curr].qnext;
 		}
 		
 	}
-	
+	kprintf("curr: %d\n",curr);
 	/* Insert process between curr node and previous node */
 
 	prev = queuetab[curr].qprev;	/* Get index of previous node	*/
