@@ -192,6 +192,7 @@ static	void	sysinit()
 	prptr->prstklen = NULLSTK;
 	prptr->prstkptr = 0;
 	prptr->mlfqpriority = 0;
+	prptr->isuserprocess =0;
 	currpid = NULLPROC;
 	
 	/* Initialize semaphores */

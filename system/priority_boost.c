@@ -17,7 +17,7 @@ void priority_boost()
 
     //set to highest priority in readylist
     pid32 walkq;
-    for(walkq=firstid(readylist);walkq!=queuetail(readylist);walkq=queuetab[walkq].qnext)
+    for(walkq=firstid(readylist);walkq!=0;walkq=queuetab[walkq].qnext)
     {
         if(queuetab[walkq].isuserprocess==1)
         {
