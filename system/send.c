@@ -11,7 +11,7 @@ syscall	send(
 	  umsg32	msg		/* Contents of message		*/
 	)
 {
-	kprintf("send called pid: %d",pid);
+	//kprintf("send called pid: %d",pid);
 	intmask	mask;			/* Saved interrupt mask		*/
 	struct	procent *prptr;		/* Ptr to process's table entry	*/
 
