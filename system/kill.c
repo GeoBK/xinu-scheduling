@@ -31,7 +31,7 @@ syscall	kill(
 		close(prptr->prdesc[i]);
 	}
 	freestk(prptr->prstkbase, prptr->prstklen);
-	prptr->turnaroundtime	= ctr1000 - prptr->prcreatetime;	
+		
 
 	switch (prptr->prstate) {
 	case PR_CURR:
@@ -55,6 +55,7 @@ syscall	kill(
 	default:
 		prptr->prstate = PR_FREE;
 	}
+	prptr->turnaroundtime	= ctr1000 - prptr->prcreatetime;
 
 	restore(mask);
 	return OK;
