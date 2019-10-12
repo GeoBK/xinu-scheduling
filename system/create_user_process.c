@@ -51,8 +51,9 @@
 	prptr->runtime	= 0;
 	prptr->num_ctxsw	= 0;
 	prptr->prcreatetime	= ctr1000;
-    prptr->tickets  = 0;
+    prptr->tatracker  = 0;
     prptr->isuserprocess  = 1;
+	prptr->mlfqpriority  = 3;
 
 
 	/* Set up stdin, stdout, and stderr descriptors for the shell	*/
@@ -104,17 +105,17 @@
 	return pid;
 }
 
-void set_tickets(pid32 pid, uint32 tickets)
-{
-    intmask 	mask;    	/* Interrupt mask		*/
-    mask = disable();
-    struct	procent	*prptr;		/* Pointer to proc. table entry */
-    prptr = &proctab[pid];
-    prptr->tickets=tickets;
-    if(prptr->prstate==PR_READY){
-        getitem(pid);
-        insert(pid,readylist,prptr->prprio,tickets);
-    }
-    restore(mask);
+// void set_tickets(pid32 pid, uint32 tickets)
+// {
+//     intmask 	mask;    	/* Interrupt mask		*/
+//     mask = disable();
+//     struct	procent	*prptr;		/* Pointer to proc. table entry */
+//     prptr = &proctab[pid];
+//     prptr->tickets=tickets;
+//     if(prptr->prstate==PR_READY){
+//         getitem(pid);
+//         insert(pid,readylist,prptr->prprio,prptr->isuserprocess,);
+//     }
+//     restore(mask);
     
-}
+// }

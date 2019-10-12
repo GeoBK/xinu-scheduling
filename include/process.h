@@ -58,7 +58,7 @@ struct procent {		/* Entry in the process table		*/
 	uint32 	runtime;
 	uint32 	turnaroundtime;
 	uint32 	num_ctxsw; 
-	uint32 	tickets;
+	uint32 	tatracker;
 	bool8	isuserprocess;
 };
 

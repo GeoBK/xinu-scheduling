@@ -10,7 +10,8 @@ status	insert(
 	  pid32		pid,		/* ID of process to insert	*/
 	  qid16		q,		/* ID of queue to use		*/
 	  int32		key,		/* Key for the inserted process	*/
-	  uint32	tickets
+	  bool8		isuserprocess,
+	  uint32	timeslicelength
 	)
 {
 	int16	curr;			/* Runs through items in a queue*/
@@ -21,25 +22,36 @@ status	insert(
 	}
 
 	curr = firstid(q);
-	while (queuetab[curr].qkey >= key && (queuetab[curr].qkey !=0)) {
+
+	while (queuetab[curr].qkey >= key && (queuetab[curr].isuserprocess == 0)) {
 		curr = queuetab[curr].qnext;
 	}
-
-	//first time a ticket is inserted
-	//number of tickets needs to be less than earlier if tickets are already present
-	//
-	while ((queuetab[curr].qkey ==0 && key==0) && (queuetab[curr].qtickets > tickets || (queuetab[curr].qtickets == tickets && (curr<pid || curr==0)))){
+	int mlfqpriority=3;
+	if(isuserprocess==1){
+		proctab[pid].tatracker+=timeslicelength;
+		if(proctab[pid].tatracker>TIME_ALLOTMENT)
+		{
+			proctab[pid].tatracker=0;
+			if(proctab[pid].mlfqpriority!=1)
+			{
+				proctab[pid].mlfqpriority--;
+			}
+		}
+		mlfqpriority=proctab[pid].mlfqpriority;
+		while (queuetab[curr].mlfqpriority >= mlfqpriority){		
+			curr = queuetab[curr].qnext;
+		}
 		
-		curr = queuetab[curr].qnext;
 	}
-
+	
 	/* Insert process between curr node and previous node */
 
 	prev = queuetab[curr].qprev;	/* Get index of previous node	*/
 	queuetab[pid].qnext = curr;
 	queuetab[pid].qprev = prev;
 	queuetab[pid].qkey = key;
-	queuetab[pid].qtickets = tickets;
+	queuetab[pid].isuserprocess = isuserprocess;
+	queuetab[pid].mlfqpriority = mlfqpriority;
 	queuetab[prev].qnext = pid;
 	queuetab[curr].qprev = pid;
 	return OK;

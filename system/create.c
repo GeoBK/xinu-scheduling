@@ -53,7 +53,7 @@ pid32	create(
 	prptr->runtime	= 0;
 	prptr->num_ctxsw	= 0;
 	prptr->prcreatetime	= ctr1000;
-	prptr->tickets  = 0;
+	prptr->tatracker  = 0;
 	prptr->isuserprocess  = 0;
 
 

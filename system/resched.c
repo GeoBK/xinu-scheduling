@@ -1,5 +1,6 @@
 /* resched.c - resched, resched_cntl */
-
+#define TIME_ALLOTMENT 20 
+#define PRIORITY_BOOST_PERIOD 20 
 #include <xinu.h>
 
 struct	defer	Defer;
@@ -35,27 +36,24 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 		/* Old process will no longer remain current */
 
 		ptold->prstate = PR_READY;
-		insert(currpid, readylist, ptold->prprio, ptold->tickets);
+		insert(currpid, readylist, ptold->prprio, ptold->isuserprocess, ctr1000 - ptold->runstime);
 	}
 	ptold->runtime += ctr1000 - ptold->runstime;
 	
-	/* Force context switch to highest priority ready process */
-
-	if(proctab[firstid(readylist)].isuserprocess)
-	{		
-		currpid	= mlfq(readylist);
-		//kprintf("inide lottery scheduler!!\n");
-	}
-	else
-	{
-		currpid = dequeue(readylist);
-	}
+	/* Force context switch to highest priority ready process */	
+	currpid = dequeue(readylist);
+	
 	
 	ptnew = &proctab[currpid];
-	ptnew->prstate = PR_CURR;
-	
+	ptnew->prstate = PR_CURR;	
 	ptnew->runstime = ctr1000;
-	preempt = QUANTUM;		/* Reset time slice for process	*/
+
+	if(ptnew->isuserprocess==1){
+		preempt = QUANTUM*(8*(2^(-1*queuetab[currpid].mlfqpriority)));		/* Reset time slice for process	*/
+	}else{
+		preempt = QUANTUM;
+	}	
+
 	if(oldpid!=currpid){
 		(ptnew->num_ctxsw)++;		
 	}
