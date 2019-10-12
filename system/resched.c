@@ -40,8 +40,8 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 
 		ptold->prstate = PR_READY;
 		insert(currpid, readylist, ptold->prprio, ptold->isuserprocess, ctr1000 - ptold->runstime);
-		kprintf("PID to insert: %d \n", currpid);
-		print_ready_list();
+		//kprintf("PID to insert: %d \n", currpid);
+		//print_ready_list();
 	}
 	ptold->runtime += ctr1000 - ptold->runstime;
 
@@ -69,7 +69,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	}else{
 		preempt = QUANTUM;
 	}	
-	kprintf("preempt after scheduling: %d\n",preempt);
+	//kprintf("preempt after scheduling: %d\n",preempt);
 
 	if(oldpid!=currpid){
 		(ptnew->num_ctxsw)++;		
