@@ -20,7 +20,7 @@ status	insert(
 	if (isbadqid(q) || isbadpid(pid)) {
 		return SYSERR;
 	}
-	kprintf("Inside insert !\n");
+	//kprintf("Inside insert !\n");
 	curr = firstid(q);
 
 	while (queuetab[curr].qkey >= key && (queuetab[curr].isuserprocess == 0)) {
