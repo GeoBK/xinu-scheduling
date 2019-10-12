@@ -63,10 +63,11 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 		}else if(queuetab[currpid].mlfqpriority==1){
 			preempt=QUANTUM*4;
 		}		
-		//kprintf("preempt after scheduling: %d\n",preempt);
+		
 	}else{
 		preempt = QUANTUM;
 	}	
+	kprintf("preempt after scheduling: %d\n",preempt);
 
 	if(oldpid!=currpid){
 		(ptnew->num_ctxsw)++;		
