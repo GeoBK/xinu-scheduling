@@ -22,6 +22,7 @@ status	insert(
 	}
 	//kprintf("Inside insert !\n");
 	curr = firstid(q);
+	kprintf("curr before loop: %d\n",curr);
 
 	while (queuetab[curr].qkey >= key && (queuetab[curr].isuserprocess == 0) && curr!=0) 
 	{
