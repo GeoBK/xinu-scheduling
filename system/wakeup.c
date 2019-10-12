@@ -12,7 +12,10 @@ void	wakeup(void)
 
 	resched_cntl(DEFER_START);
 	while (nonempty(sleepq) && (firstkey(sleepq) <= 0)) {
-		ready(dequeue(sleepq));
+		pid32 pidd=dequeue(sleepq);
+		kprintf("Process being woken up: %d",pidd);
+		ready(pidd);
+		print_ready_list();
 	}
 
 	resched_cntl(DEFER_STOP);
