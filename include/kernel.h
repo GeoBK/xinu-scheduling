@@ -62,7 +62,7 @@ extern	qid16	readylist;	/* global ID for list of ready processes*/
 				/* the run-time stack			*/
 #define	QUANTUM	10		/* time slice in milliseconds		*/
 
-#define PRIORITY_BOOST_PERIOD 20 
+#define PRIORITY_BOOST_PERIOD 20000 
 
 #define TIME_ALLOTMENT 20 
 

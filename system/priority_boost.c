@@ -4,6 +4,7 @@
 
 void priority_boost()
 {
+    kprintf("Inside priority boost!!!\n");
     int i=0;
     //set to highest priority in PCB table
     for(i=1;i<NPROC;i++)
