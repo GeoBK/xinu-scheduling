@@ -43,7 +43,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	}
 	ptold->runtime += ctr1000 - ptold->runstime;
 
-	print_ready_list();
+	//print_ready_list();
 	
 	/* Force context switch to highest priority ready process */	
 	currpid = dequeue(readylist);
