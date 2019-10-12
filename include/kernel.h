@@ -60,11 +60,11 @@ extern	qid16	readylist;	/* global ID for list of ready processes*/
 
 #define	CONTEXT	64		/* bytes in a function call context on	*/
 				/* the run-time stack			*/
-#define	QUANTUM	10		/* time slice in milliseconds		*/
+#define	QUANTUM	5		/* time slice in milliseconds		*/
 
-#define PRIORITY_BOOST_PERIOD 20000 
+#define PRIORITY_BOOST_PERIOD 1000 
 
-#define TIME_ALLOTMENT 20 
+#define TIME_ALLOTMENT 100
 
 /* Size of the stack for the null process */
 
