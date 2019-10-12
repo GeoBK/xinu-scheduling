@@ -32,10 +32,11 @@ status	ready(
 
 syscall print_ready_list(){	
 	int32 curr;
-	printf("Ready List\n");
+	printf("Ready List\t");
 	for (curr = firstid(readylist);curr != queuetail(readylist);curr = queuetab[curr].qnext) {		
-		printf("PID: %u \n",(unsigned int)curr);		
+		printf("PID: %u, mlfq pr: %d, key: %d -> ",(unsigned int)curr,queuetab[curr].mlfqpriority,queuetab[curr].qkey);		
 	}
+	printf("\n");
 	return OK;	
 	
 }

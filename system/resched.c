@@ -42,6 +42,8 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 		insert(currpid, readylist, ptold->prprio, ptold->isuserprocess, ctr1000 - ptold->runstime);
 	}
 	ptold->runtime += ctr1000 - ptold->runstime;
+
+	print_ready_list();
 	
 	/* Force context switch to highest priority ready process */	
 	currpid = dequeue(readylist);
