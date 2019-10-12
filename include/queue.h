@@ -16,7 +16,8 @@ struct	qentry	{		/* One per process plus two per list	*/
 	int32	qkey;		/* Key on which the queue is ordered	*/
 	qid16	qnext;		/* Index of next process or tail	*/
 	qid16	qprev;		/* Index of previous process or head	*/
-	uint32	qtickets;
+	uint32	mlfqpriority;
+	bool8	isuserprocess;
 };
 
 extern	struct qentry	queuetab[];
