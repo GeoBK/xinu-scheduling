@@ -11,6 +11,7 @@ syscall	send(
 	  umsg32	msg		/* Contents of message		*/
 	)
 {
+	kprintf("send called pid: %d",pid);
 	intmask	mask;			/* Saved interrupt mask		*/
 	struct	procent *prptr;		/* Ptr to process's table entry	*/
 
@@ -31,8 +32,7 @@ syscall	send(
 
 	/* If recipient waiting or in timed-wait make it ready */
 
-	if (prptr->prstate == PR_RECV) {
-		kprintf("send called pid: %d",pid);
+	if (prptr->prstate == PR_RECV) {		
 		ready(pid);
 	} else if (prptr->prstate == PR_RECTIM) {
 		unsleep(pid);
