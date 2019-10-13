@@ -83,12 +83,12 @@ int main() {
 	set_tickets(prB, 50);
 	resume(prA);
 	resume(prB);
-	kprintf("1\n");
+	//kprintf("1\n");
 	receive();
 	kprintf("2\n");
-	print_ready_list();
+	//print_ready_list();
 	receive();
-	kprintf("3\n");
+	//kprintf("3\n");
 	sleepms(50); //wait for user processes to terminate	
 	kprintf("4\n");
 	kprintf("\nprocess %d:: runtime=%d, turnaround time=%d, ctx=%d\n",prA, proctab[prA].runtime, proctab[prA].turnaroundtime, proctab[prA].num_ctxsw);
