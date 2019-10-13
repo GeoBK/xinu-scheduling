@@ -346,7 +346,7 @@ int main() {
 	resume(prA);
 	resume(prB);
 	resume(prC);
-	print_ready_list();
+	// print_ready_list();
 	receive();	
 	receive();	
 
