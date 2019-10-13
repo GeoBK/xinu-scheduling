@@ -77,24 +77,28 @@ pid32	lottery(
 	}
 	// winner: use some call to a random number generator to 
 	// get a value, between 0 and the total # of tickets 
+	pid32	curr;
 	if(totaltickets==0){
-		kprintf("totaltickets is 0!!\n");
-		totaltickets=1;
+		kprintf("totaltickets is 0!!\n");		
+		curr = 0;
+	}else{
+		//kprintf("totaltickets : %d\n",totaltickets);
+		uint32 winner = rand()% totaltickets;
+		// current: use this to walk through the list of jobs 
+		//kprintf("winner : %d\n",winner);
+		curr = firstid(q); 
+		while (curr!=0) 
+		{
+			counter = counter + proctab[curr].tickets; 
+			if (counter > winner)
+				break; // found the winner 
+			curr = queuetab[curr].qnext;
+		}
+		// ’current’ is the winner: schedule it...		
+		//kprintf("curr: %d",curr);
+		
 	}
-	//kprintf("totaltickets : %d\n",totaltickets);
-	uint32 winner = rand()% totaltickets;
-	// current: use this to walk through the list of jobs 
-	//kprintf("winner : %d\n",winner);
-	pid32	curr = firstid(q); 
-	while (curr!=0) 
-	{
-		counter = counter + proctab[curr].tickets; 
-		if (counter > winner)
-			break; // found the winner 
-		curr = queuetab[curr].qnext;
-	}
-	// ’current’ is the winner: schedule it...		
-	//kprintf("curr: %d",curr);
+
 	pid = getitem(curr);
 	queuetab[pid].qprev = EMPTY;
 	queuetab[pid].qnext = EMPTY;
