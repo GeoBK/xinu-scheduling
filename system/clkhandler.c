@@ -11,6 +11,7 @@ void	clkhandler()
 	static	uint32	count1000 = 1000;	/* Count to 1000 ms	*/
 
 	ctr1000++;
+	proctab[currpid].runtime++;
 
 	/* Decrement the ms counter, and see if a second has passed */
 
@@ -42,6 +43,7 @@ void	clkhandler()
 
 	if((--preempt) <= 0) {
 		preempt = QUANTUM;
+
 		//kprintf("clock handler pid: %d\n",currpid);
 		resched();
 	}

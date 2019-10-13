@@ -37,7 +37,6 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 		ptold->prstate = PR_READY;
 		insert(currpid, readylist, ptold->prprio, ptold->tickets);
 	}
-	ptold->runtime += ctr1000 - ptold->runstime;
 	
 	/* Force context switch to highest priority ready process */
 
