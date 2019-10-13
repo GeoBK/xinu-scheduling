@@ -45,7 +45,9 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 
 	//print_ready_list();
 	kprintf("runtime: %d\n",proctab[currpid].runtime);
-	if(queuetab[firstid(readylist)].mlfqpriority<=ptold->mlfqpriority && preemptmlfq>0 && queuetab[firstid(readylist)].isuserprocess==1)
+	kprintf("tatracker: %d\n",proctab[currpid].tatracker);
+	if(proctab[currpid].prstate == PR_CURR &&  queuetab[firstid(readylist)].mlfqpriority<=ptold->mlfqpriority 
+				&& preemptmlfq>0 && queuetab[firstid(readylist)].isuserprocess==1)
 	{
 		kprintf("currpid: %d\n",currpid);
 		kprintf("preempt mlfq: %d\n",preemptmlfq);		
