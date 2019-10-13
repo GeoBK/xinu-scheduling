@@ -55,9 +55,10 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	
 	ptnew->runstime = ctr1000;
 	preempt = QUANTUM;		/* Reset time slice for process	*/
-	if(oldpid!=currpid){
-		(ptnew->num_ctxsw)++;		
-	}
+	// if(oldpid!=currpid){
+	// 	(ptnew->num_ctxsw)++;		
+	// }
+	(ptnew->num_ctxsw)++;
 	//#define DEBUG_CTXSW
 	#ifdef DEBUG_CTXSW  
 	if(oldpid!=currpid){		
