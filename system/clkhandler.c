@@ -52,7 +52,7 @@ void	clkhandler()
 	{
 		kprintf("Priority boost called!!");
 		reset_counter = PRIORITY_BOOST_PERIOD;
-		priority_boost();
+		// priority_boost();
 	}
 
 }
