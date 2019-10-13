@@ -390,7 +390,8 @@ int main() {
 	resume(prB);
 	resume(prC);
 
-	receive();	
+	receive();
+	print_ready_list();	
 	receive();	
 	receive();	
 
