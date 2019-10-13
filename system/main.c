@@ -393,6 +393,7 @@ int main() {
 	receive();
 	print_ready_list();	
 	receive();	
+	print_ready_list();	
 	receive();	
 
 	sleepms(50); // wait for user processes to terminate	
