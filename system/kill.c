@@ -36,15 +36,17 @@ syscall	kill(
 	switch (prptr->prstate) {
 	case PR_CURR:
 		prptr->prstate = PR_FREE;	/* Suicide */
+		prptr->turnaroundtime	= ctr1000 - prptr->prcreatetime;	
 		resched();
 
 	case PR_SLEEP:
 	case PR_RECTIM:
+		prptr->turnaroundtime	= ctr1000 - prptr->prcreatetime;	
 		unsleep(pid);
 		prptr->prstate = PR_FREE;
 		break;
 
-	case PR_WAIT:
+	case PR_WAIT:			
 		semtab[prptr->prsem].scount++;
 		/* Fall through */
 
@@ -53,9 +55,10 @@ syscall	kill(
 		/* Fall through */
 
 	default:
+		prptr->turnaroundtime	= ctr1000 - prptr->prcreatetime;
 		prptr->prstate = PR_FREE;
 	}
-	prptr->turnaroundtime	= ctr1000 - prptr->prcreatetime;	
+	
 	restore(mask);
 	return OK;
 }
