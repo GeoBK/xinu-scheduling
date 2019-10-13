@@ -36,13 +36,13 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 			return;
 		}		
 		/* Old process will no longer remain current */
-		kprintf("runtime: %d\n",proctab[currpid].runtime);
-		kprintf("tatracker: %d\n",proctab[currpid].tatracker);
+		// kprintf("runtime: %d\n",proctab[currpid].runtime);
+		// kprintf("tatracker: %d\n",proctab[currpid].tatracker);
 		if(queuetab[firstid(readylist)].mlfqpriority<=ptold->mlfqpriority 
 					&& preemptmlfq>0 && queuetab[firstid(readylist)].isuserprocess==1)
 		{
-			kprintf("currpid: %d\n",currpid);
-			kprintf("preempt mlfq: %d\n",preemptmlfq);		
+			// kprintf("currpid: %d\n",currpid);
+			// kprintf("preempt mlfq: %d\n",preemptmlfq);		
 			return;
 		}
 		ptold->prstate = PR_READY;
