@@ -13,6 +13,7 @@ void priority_boost()
         {
             proctab[i].mlfqpriority=3;
             proctab[i].tatracker=0;
+            preemptmlfq=0;
         }
     }
 
