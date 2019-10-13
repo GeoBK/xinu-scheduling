@@ -6,6 +6,7 @@ uint32	clktime;		/* Seconds since boot			*/
 uint32	ctr1000;		/* Milliseconds since boot		*/
 qid16	sleepq;			/* Queue of sleeping processes		*/
 uint32	preempt;		/* Preemption counter			*/
+uint32	preemptmlfq;		/* Preemption counter for mlfq			*/
 uint32	reset_counter;
 
 /*------------------------------------------------------------------------

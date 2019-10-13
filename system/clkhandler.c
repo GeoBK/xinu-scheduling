@@ -42,9 +42,9 @@ void	clkhandler()
 	/* Decrement the preemption counter, and reschedule when the */
 	/*   remaining time reaches zero			     */
 	//kprintf("cpreempt: %d\n",preempt);
-	if((--preempt) <= 0) {
-		preempt = QUANTUM;
-		
+	--preemptmlfq;
+	if((--preempt) <= 0 ) {
+		preempt = QUANTUM;		
 		resched();
 	}
 	//kprintf("reset_counter: %d, preempt : %d\n", reset_counter,preempt);

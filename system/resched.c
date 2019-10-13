@@ -34,8 +34,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 		if (ptold->prprio > firstkey(readylist)) {
 			//kprintf("return \n");			
 			return;
-		}
-
+		}		
 		/* Old process will no longer remain current */
 
 		ptold->prstate = PR_READY;
@@ -45,6 +44,11 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	}	
 
 	//print_ready_list();
+
+	if(queuetab[firstid(readylist)].mlfqpriority<=ptold->mlfqpriority && preemptmlfq>0 && queuetab[firstid(readylist)].isuserprocess==1)
+	{
+		return;
+	}
 	
 	/* Force context switch to highest priority ready process */	
 	currpid = dequeue(readylist);
@@ -54,29 +58,39 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	ptnew->prstate = PR_CURR;	
 	ptnew->runstime = ctr1000;
 
-	if(ptnew->isuserprocess==1){
+	if(ptnew->isuserprocess==1)
+	{
 		if(queuetab[currpid].mlfqpriority==3)
 		{
-			preempt=QUANTUM;
-		}else if(queuetab[currpid].mlfqpriority==2)
+			preemptmlfq=QUANTUM;
+		}
+		else if(queuetab[currpid].mlfqpriority==2)
 		{
-			preempt=QUANTUM*2;
-		}else if(queuetab[currpid].mlfqpriority==1){
-			preempt=QUANTUM*4;
+			preemptmlfq=QUANTUM*2;
+		}
+		else if(queuetab[currpid].mlfqpriority==1)
+		{
+			preemptmlfq=QUANTUM*4;
 		}		
 		
-	}else{
-		preempt = QUANTUM;
-	}	
+	}
+	else
+	{
+		preemptmlfq=QUANTUM;
+	}
+	preempt = QUANTUM;
+		
 	//kprintf("preempt after scheduling: %d\n",preempt);
 
-	if(oldpid!=currpid){
+	if(oldpid!=currpid)
+	{
 		(ptnew->num_ctxsw)++;	
 		ctxsw(&ptold->prstkptr, &ptnew->prstkptr);	
 	}
 	#define DEBUG_CTXSW
 	#ifdef DEBUG_CTXSW  
-	if(oldpid!=currpid){		
+	if(oldpid!=currpid)
+	{		
 		kprintf("ctxsw::%d-%d\n",oldpid,currpid);
 	}	
 	#endif
