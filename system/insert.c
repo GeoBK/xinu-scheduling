@@ -35,7 +35,7 @@ status	insert(
 	{
 		//kprintf("inside userprocess loop\n");
 		proctab[pid].tatracker+=timeslicelength;
-		if(proctab[pid].tatracker>TIME_ALLOTMENT)
+		if(proctab[pid].tatracker>=TIME_ALLOTMENT)
 		{
 			//kprintf("inside time allotment thing loop\n");
 			proctab[pid].tatracker=0;
