@@ -391,6 +391,10 @@ int main() {
 	resume(prC);
 	print_ready_list();
 	receive();
+	kprintf("Runtime of process %d: %d",prA,proctab[prA].runtime);
+	kprintf("Status of %d: %d",prA,proctab[prA].prstate);
+	kprintf("Status of %d: %d",prB,proctab[prB].prstate);
+	kprintf("Status of %d: %d",prC,proctab[prC].prstate);
 	print_ready_list();	
 	receive();	
 	print_ready_list();	
