@@ -40,8 +40,8 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 
 		ptold->prstate = PR_READY;
 		insert(currpid, readylist, ptold->prprio, ptold->isuserprocess, ctr1000 - ptold->runstime);
-		kprintf("PID to insert(in resched): %d \n", currpid);
-		print_ready_list();
+		// kprintf("PID to insert(in resched): %d \n", currpid);
+		// print_ready_list();
 	}	
 
 	//print_ready_list();
