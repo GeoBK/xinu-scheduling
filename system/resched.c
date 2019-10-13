@@ -47,6 +47,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 
 	if(queuetab[firstid(readylist)].mlfqpriority<=ptold->mlfqpriority && preemptmlfq>0 && queuetab[firstid(readylist)].isuserprocess==1)
 	{
+		kprintf("currpid: %d\n",currpid);
 		kprintf("preempt mlfq: %d\n",preemptmlfq);
 		return;
 	}
