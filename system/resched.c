@@ -14,7 +14,7 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	struct procent *ptold;	/* Ptr to table entry for old process	*/
 	struct procent *ptnew;	/* Ptr to table entry for new process	*/
 
-	kprintf("Inside resched!");
+	// kprintf("Inside resched!");
 
 	/* If rescheduling is deferred, record attempt and return */
 
@@ -85,19 +85,19 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	preempt = QUANTUM;
 		
 	//kprintf("preempt after scheduling: %d\n",preempt);
-
+	#define DEBUG_CTXSW
+	#ifdef DEBUG_CTXSW  
+	if(oldpid!=currpid)
+	{		
+		kprintf("ctxsw::%d-%d\n",oldpid,currpid);
+	}	
+	#endif
 	if(oldpid!=currpid)
 	{
 		(ptnew->num_ctxsw)++;	
 		ctxsw(&ptold->prstkptr, &ptnew->prstkptr);	
 	}
-	// #define DEBUG_CTXSW
-	// #ifdef DEBUG_CTXSW  
-	// if(oldpid!=currpid)
-	// {		
-		kprintf("ctxsw::%d-%d\n",oldpid,currpid);
-	// }	
-	// #endif
+	
 	
 
 	/* Old process returns here when resumed */
