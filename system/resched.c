@@ -91,13 +91,13 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 		(ptnew->num_ctxsw)++;	
 		ctxsw(&ptold->prstkptr, &ptnew->prstkptr);	
 	}
-	#define DEBUG_CTXSW
-	#ifdef DEBUG_CTXSW  
+	// #define DEBUG_CTXSW
+	// #ifdef DEBUG_CTXSW  
 	if(oldpid!=currpid)
 	{		
 		kprintf("ctxsw::%d-%d\n",oldpid,currpid);
 	}	
-	#endif
+	// #endif
 	
 
 	/* Old process returns here when resumed */
