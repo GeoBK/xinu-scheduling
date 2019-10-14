@@ -85,11 +85,11 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	preempt = QUANTUM;
 		
 	//kprintf("preempt after scheduling: %d\n",preempt);
-	#define DEBUG_CTXSW
+	// #define DEBUG_CTXSW
 	#ifdef DEBUG_CTXSW  
 	if(oldpid!=currpid)
 	{		
-		kprintf("ctxsw::%d-%d, preemptmlfq: %d, preempt: %d\n",oldpid,currpid,preemptmlfq,preempt);
+		kprintf("ctxsw::%d-%d\n",oldpid,currpid);
 	}	
 	#endif
 	if(oldpid!=currpid)
