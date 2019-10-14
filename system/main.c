@@ -6,6 +6,19 @@ void timed_execution(uint32 runtime){
 	    while(proctab[currpid].runtime<runtime);
 }
 
+void sync_printf(char *fmt, ...)
+
+{
+        intmask mask = disable();
+
+        void *arg = __builtin_apply_args();
+
+        __builtin_apply((void*)kprintf, arg, 100);
+
+        restore(mask);
+
+}
+
 int main() {
 	pid32 prA, prB, prC, prD;
 
@@ -27,7 +40,7 @@ int main() {
 
 	sleepms(50); // wait for user processes to terminate	
 
-	kprintf("reset_counter : %d\n",reset_counter);
+	sync_printf("reset_counter : %d\n",reset_counter);
 
 	kprintf("process %d:: name=%s, runtime=%d, turnaround time=%d, ctx=%d\n",prA, proctab[prA].prname, proctab[prA].runtime, proctab[prA].turnaroundtime, proctab[prA].num_ctxsw);
 	kprintf("process %d:: name=%s, runtime=%d, turnaround time=%d, ctx=%d\n",prB, proctab[prB].prname, proctab[prB].runtime, proctab[prB].turnaroundtime, proctab[prB].num_ctxsw);
@@ -57,7 +70,7 @@ int main() {
         receive();
 
         sleepms(50); // wait for user processes to terminate    
-		kprintf("reset_counter : %d\n",reset_counter);
+		sync_printf("reset_counter : %d\n",reset_counter);
 
         kprintf("process %d:: name=%s, runtime=%d, turnaround time=%d, ctx=%d\n",prA, proctab[prA].prname, proctab[prA].runtime, proctab[prA].turnaroundtime, proctab[prA].num_ctxsw);
         kprintf("process %d:: name=%s, runtime=%d, turnaround time=%d, ctx=%d\n",prB, proctab[prB].prname, proctab[prB].runtime, proctab[prB].turnaroundtime, proctab[prB].num_ctxsw);
@@ -67,7 +80,7 @@ int main() {
         kprintf("==================================================================\n\n");
 
         kprintf("=== TESTCASE 3::  interactive jobs =============================\n");
-		kprintf("reset_counter : %d\n",reset_counter);
+		sync_printf("reset_counter : %d\n",reset_counter);
 
         prA = create_user_process(burst_execution, 1024, "burst_100/5/5", 3, 100, 5, 5);
         prB = create_user_process(burst_execution, 1024, "burst_100/5/5", 3, 100, 5, 5);
@@ -79,13 +92,13 @@ int main() {
         resume(prC);
         resume(prD);
 		//print_ready_list();
-kprintf("reset_counter : %d\n",reset_counter);
+sync_printf("reset_counter : %d\n",reset_counter);
         receive();
 		//print_ready_list();
         receive();
         receive();
         receive();
-		kprintf("reset_counter : %d\n",reset_counter);
+		sync_printf("reset_counter : %d\n",reset_counter);
 		//print_ready_list();
 
         sleepms(50); // wait for user processes to terminate    
