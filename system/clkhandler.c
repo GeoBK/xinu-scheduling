@@ -38,6 +38,19 @@ void	clkhandler()
 			wakeup();
 		}
 	}
+	if(proctab[currpid].isuserprocess==1)
+	{
+		if((--proctab[currpid].tatracker)<=0)
+		{
+			proctab[currpid].tatracker=TIME_ALLOTMENT;
+			if(proctab[currpid].mlfqpriority!=1)
+			{
+				proctab[currpid].mlfqpriority--;
+			}
+			resched();
+		}
+	}
+	
 
 	/* Decrement the preemption counter, and reschedule when the */
 	/*   remaining time reaches zero			     */

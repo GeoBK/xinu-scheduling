@@ -32,18 +32,7 @@ status	insert(
 	//kprintf("curr between loops: %d\n",curr);
 	int mlfqpriority=0;
 	if(isuserprocess==1)
-	{
-		//kprintf("inside userprocess loop\n");
-		proctab[pid].tatracker+=timeslicelength;
-		if(proctab[pid].tatracker>=TIME_ALLOTMENT)
-		{
-			//kprintf("inside time allotment thing loop\n");
-			proctab[pid].tatracker=0;
-			if(proctab[pid].mlfqpriority!=1)
-			{
-				proctab[pid].mlfqpriority--;
-			}
-		}
+	{		
 		mlfqpriority=proctab[pid].mlfqpriority;
 		while (queuetab[curr].mlfqpriority >= mlfqpriority){	
 			//kprintf("inside for loop, curr: %d, curr priority %d, mlfqpriority: %d\n",curr, queuetab[curr].mlfqpriority, mlfqpriority);	
