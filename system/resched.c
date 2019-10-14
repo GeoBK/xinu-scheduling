@@ -93,10 +93,10 @@ void	resched(void)		/* Assumes interrupts are disabled	*/
 	}
 	// #define DEBUG_CTXSW
 	// #ifdef DEBUG_CTXSW  
-	if(oldpid!=currpid)
-	{		
+	// if(oldpid!=currpid)
+	// {		
 		kprintf("ctxsw::%d-%d\n",oldpid,currpid);
-	}	
+	// }	
 	// #endif
 	
 
